@@ -1,0 +1,36 @@
+# Node.js backend and frontend
+node_modules/
+
+# Build outputs
+dist/
+build/
+vite/
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+
+# IDE files
+.vscode/
+
+# npm package lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# React build output
+frontend/build/
+
+# Tailwind CSS cache
+frontend/.tailwind/
+
+# Test coverage
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+

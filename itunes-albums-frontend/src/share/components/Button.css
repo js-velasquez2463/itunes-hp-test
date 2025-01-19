@@ -1,0 +1,8 @@
+
+.button {
+  @apply bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300;
+}
+
+.button:disabled {
+  @apply bg-gray-400 cursor-not-allowed;
+}

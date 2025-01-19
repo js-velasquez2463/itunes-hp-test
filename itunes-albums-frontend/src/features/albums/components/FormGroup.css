@@ -1,0 +1,23 @@
+.form-group {
+  @apply mb-6;
+}
+
+.form-label {
+  @apply block text-lg mb-2 text-gray-700;
+}
+
+.search-input-container {
+  @apply mb-6;
+}
+
+.input {
+  @apply w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.button {
+  @apply w-full p-3 mt-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 disabled:bg-gray-400;
+}
+
+.form-group .search-button {
+  @apply mt-4;
+}
