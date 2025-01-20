@@ -1,3 +1,7 @@
 {
-    "backendUrl": "http://localhost:3005/api"
+  "backendUrl": "http://localhost:3005/api",
+  "loginCredentials": {
+    "username": "admin",
+    "password": "password123"
+  }
 }

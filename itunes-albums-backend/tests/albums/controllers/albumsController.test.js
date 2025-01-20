@@ -2,6 +2,8 @@
 import request from "supertest";
 import app from "app";
 import httpClient from "../../../src/shared/httpClient";
+import jwt from "jsonwebtoken";
+import config from "../../../src/shared/config";
 
 jest.mock("../../../src/shared/httpClient.js", () => ({
   default: {
@@ -17,8 +19,21 @@ jest.mock("../../../src/shared/httpClient.js", () => ({
 }));
 
 describe("GET /api/albums", () => {
-  it("should return 400 if artist name is missing", async () => {
+  const secretKey = config.jwtSecret;
+  const validToken = jwt.sign({ username: "admin" }, secretKey, {
+    expiresIn: "1h",
+  });
+
+  it("should return 401 if no token is provided", async () => {
     const response = await request(app).get("/api/albums");
+    expect(response.status).toBe(401);
+    expect(response.body.message).toBe("Access token is missing or invalid");
+  });
+
+  it("should return 400 if artist name is missing", async () => {
+    const response = await request(app)
+      .get("/api/albums")
+      .set("Authorization", `Bearer ${validToken}`);
     expect(response.status).toBe(400);
     expect(response.body.error).toBe("Artist name is required");
   });
@@ -35,7 +50,9 @@ describe("GET /api/albums", () => {
       },
     });
 
-    const response = await request(app).get("/api/albums?artist=Beatles");
+    const response = await request(app)
+      .get("/api/albums?artist=Beatles")
+      .set("Authorization", `Bearer ${validToken}`);
 
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
